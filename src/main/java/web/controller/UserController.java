@@ -9,7 +9,6 @@ import web.service.UserService;
 
 @Controller
 public class UserController {
-
 	// --------Dependency Injection--------
 	private final UserService userService;
 

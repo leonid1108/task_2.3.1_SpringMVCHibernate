@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 import web.entity.User;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDao {
 
     // Вывод всех пользователей
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return entityManager.createQuery("SELECT u FROM User u", User.class)
                 .getResultList();
@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
 
     // Поиск пользователя по ID
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User findById(Long id) {
         return entityManager.find(User.class, id);
     }
